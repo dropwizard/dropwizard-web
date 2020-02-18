@@ -5,7 +5,7 @@
 
   <groupId>io.dropwizard.modules</groupId>
   <artifactId>dropwizard-web</artifactId>
-  <version>1.3.12-2-SNAPSHOT</version>
+  <version>1.4.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>dropwizard-web</name>
@@ -73,8 +73,8 @@
     <maven.compiler.showWarnings>true</maven.compiler.showWarnings>
     <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 
-    <dropwizard.version>1.3.17</dropwizard.version>
-    <jetty.version>9.4.18.v20190429</jetty.version>
+    <dropwizard.version>2.0.1</dropwizard.version>
+    <jetty.version>9.4.26.v20200117</jetty.version>
   </properties>
 
   <dependencyManagement>
@@ -280,6 +280,14 @@
       </plugin>
 
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <tagNameFormat>v@{project.version}</tagNameFormat>
+        </configuration>
+      </plugin>
+
+      <plugin>
         <groupId>org.eluder.coveralls</groupId>
         <artifactId>coveralls-maven-plugin</artifactId>
       </plugin>
@@ -364,7 +372,18 @@
         </plugins>
       </build>
     </profile>
-
+    <profile>
+      <id>dropwizard-major-version-1</id>
+      <activation>
+        <property>
+          <name>env.DROPWIZARD_MAJOR_VERSION</name>
+          <value>1</value>
+        </property>
+      </activation>
+      <properties>
+        <dropwizard.version>1.3.18</dropwizard.version>
+      </properties>
+    </profile>
   </profiles>
 
 </project>
