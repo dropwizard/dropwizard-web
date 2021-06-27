@@ -1,4 +1,5 @@
-web:
+web1:
+  uriPath: /test/one
   hsts:
     enabled: true
   frame-options:
@@ -14,6 +15,11 @@ web:
     enabled: true
     X-Custom-Header-1: custom value 1
     X-Custom-Header-2: custom value 2
+web2:
+  uriPath: /test/two
+  headers:
+    enabled: true
+    X-Second-Custom-Header: custom value
 
 server:
   type: simple
