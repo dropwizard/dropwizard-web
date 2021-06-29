@@ -393,18 +393,6 @@
         </plugins>
       </build>
     </profile>
-    <profile>
-      <id>dropwizard-major-version-1</id>
-      <activation>
-        <property>
-          <name>env.DROPWIZARD_MAJOR_VERSION</name>
-          <value>1</value>
-        </property>
-      </activation>
-      <properties>
-        <dropwizard.version>1.3.29</dropwizard.version>
-      </properties>
-    </profile>
   </profiles>
 
 </project>
