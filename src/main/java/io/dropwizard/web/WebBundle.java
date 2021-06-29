@@ -55,7 +55,7 @@ public abstract class WebBundle<T extends Configuration> implements ConfiguredBu
         headers.putAll(webConfig.getHeaders());
 
         // configure filter
-        configureHeaderFilter(environment, urlPattern, headers);
+        configureHeaderFilter(environment, webConfig.getUriPath(), urlPattern, headers);
 
         // cors
         if (webConfig.getCorsFilterFactory() != null) {
@@ -63,13 +63,16 @@ public abstract class WebBundle<T extends Configuration> implements ConfiguredBu
         }
     }
 
-    protected void configureHeaderFilter(Environment environment, String urlPattern, Map<String, String> headers) {
+    protected void configureHeaderFilter(Environment environment,
+                                         String uriPath,
+                                         String urlPattern,
+                                         Map<String, String> headers) {
         final String headerConfig = headers.entrySet().stream()
                 .map(entry -> "set " + entry.getKey() + ": " + entry.getValue())
                 .collect(Collectors.joining(","));
         final Map<String, String> filterConfig = Collections.singletonMap("headerConfig", headerConfig);
         final FilterRegistration.Dynamic filter = environment.servlets()
-                .addFilter("header-filter", HeaderFilter.class);
+                .addFilter("header-filter-" + uriPath, HeaderFilter.class);
         filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, urlPattern);
         filter.setInitParameters(filterConfig);
     }

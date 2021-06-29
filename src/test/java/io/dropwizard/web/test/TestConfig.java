@@ -10,14 +10,27 @@ import javax.validation.constraints.NotNull;
 public class TestConfig extends Configuration {
     @Valid
     @NotNull
-    @JsonProperty("web")
-    private WebConfiguration webConfiguration = new WebConfiguration();
+    @JsonProperty("web1")
+    private WebConfiguration web1Configuration = new WebConfiguration();
 
-    public WebConfiguration getWebConfiguration() {
-        return webConfiguration;
+    @Valid
+    @NotNull
+    @JsonProperty("web2")
+    private WebConfiguration web2Configuration = new WebConfiguration();
+
+    public WebConfiguration getWeb1Configuration() {
+        return web1Configuration;
     }
 
-    public void setWebConfiguration(WebConfiguration webConfiguration) {
-        this.webConfiguration = webConfiguration;
+    public WebConfiguration getWeb2Configuration() {
+        return web2Configuration;
+    }
+
+    public void setWeb1Configuration(WebConfiguration webConfiguration) {
+        this.web1Configuration = webConfiguration;
+    }
+
+    public void setWeb2Configuration(WebConfiguration webConfiguration) {
+        this.web2Configuration = webConfiguration;
     }
 }

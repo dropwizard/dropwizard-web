@@ -16,7 +16,13 @@ public class TestApp extends Application<TestConfig> {
         bootstrap.addBundle(new WebBundle<TestConfig>() {
             @Override
             public WebConfiguration getWebConfiguration(TestConfig config) {
-                return config.getWebConfiguration();
+                return config.getWeb1Configuration();
+            }
+        });
+        bootstrap.addBundle(new WebBundle<TestConfig>() {
+            @Override
+            public WebConfiguration getWebConfiguration(TestConfig config) {
+                return config.getWeb2Configuration();
             }
         });
     }
@@ -29,8 +35,15 @@ public class TestApp extends Application<TestConfig> {
     @Path("/test")
     public static class TestResource {
         @GET
-        public String test() {
-            return "test response";
+        @Path("one")
+        public String one() {
+            return "test response 1";
+        }
+
+        @GET
+        @Path("two")
+        public String two() {
+            return "test response 2";
         }
     }
 }
