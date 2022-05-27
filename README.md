@@ -15,10 +15,11 @@ Provides support for configuring various http headers that are important for web
 - other custom headers
 
 ## Dropwizard Version Support Matrix
-dropwizard-web    | Dropwizard v1.3.x  | Dropwizard v2.0.x
------------------ | ------------------ | ------------------
-v1.3.x            | :white_check_mark: | :white_check_mark:
-v1.4.x            | :white_check_mark: | :white_check_mark:
+dropwizard-web | Dropwizard v1.3.x  | Dropwizard v2.0.x  | Dropwizard v2.1.x
+-------------- | ------------------ | ------------------ | ------------------
+v1.3.x         | :white_check_mark: | :white_check_mark: | :question:
+v1.4.x         | :white_check_mark: | :white_check_mark: | :question:
+v1.5.x         | :white_check_mark: | :white_check_mark: | :white_check_mark:
 
 ## Usage
 In your application's `Configuration` class, add a `WebConfiguration` object:
