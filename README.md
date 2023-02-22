@@ -1,6 +1,6 @@
 # dropwizard-web
-[![Build Status](https://travis-ci.org/dropwizard/dropwizard-web.svg?branch=master)](https://travis-ci.org/dropwizard/dropwizard-web)
-[![Coverage Status](https://img.shields.io/coveralls/dropwizard/dropwizard-web.svg)](https://coveralls.io/r/dropwizard/dropwizard-web)
+[![Build Status](https://github.com/dropwizard/dropwizard-web/actions/workflows/build.yml/badge.svg)](https://github.com/dropwizard/dropwizard-web/actions)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=dropwizard_dropwizard-web&metric=coverage)](https://sonarcloud.io/summary/new_code?id=dropwizard_dropwizard-web)
 [![Maven Central](https://img.shields.io/maven-central/v/io.dropwizard.modules/dropwizard-web.svg)](http://mvnrepository.com/artifact/io.dropwizard.modules/dropwizard-web)
 
 Provides support for configuring various http headers that are important for web services.
