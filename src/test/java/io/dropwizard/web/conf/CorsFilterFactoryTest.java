@@ -16,8 +16,8 @@ import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Map;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterRegistration;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterRegistration;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.aMapWithSize;

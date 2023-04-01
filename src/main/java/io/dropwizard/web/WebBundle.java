@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.servlet.DispatcherType;
-import javax.servlet.FilterRegistration;
+import jakarta.servlet.DispatcherType;
+import jakarta.servlet.FilterRegistration;
 
 public abstract class WebBundle<T extends Configuration> implements ConfiguredBundle<T> {
     private static final String WILDCARD = "*";
