@@ -15,12 +15,13 @@ Provides support for configuring various http headers that are important for web
 - other custom headers
 
 ## Dropwizard Version Support Matrix
-dropwizard-web | Dropwizard v1.3.x  | Dropwizard v2.0.x  | Dropwizard v2.1.x  | Dropwizard v3.0.x  | Dropwizard 4.0.x  |
--------------- | ------------------ | ------------------ | ------------------ | ------------------ | ----------------- |
-v1.3.x         | :white_check_mark: | :white_check_mark: | :question:         | :x:                | :x:               |
-v1.4.x         | :white_check_mark: | :white_check_mark: | :question:         | :x:                | :x:               |
-v1.5.x         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:               |
-v2.0.x         | :x:                | :x:                | :x:                | :white_check_mark: | :question:        |
+| dropwizard-web | Dropwizard v1.3.x  | Dropwizard v2.0.x  | Dropwizard v2.1.x  | Dropwizard v3.0.x  | Dropwizard v4.0.x  |
+|----------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+| v1.3.x         | :white_check_mark: | :white_check_mark: | :question:         | :x:                | :x:                |
+| v1.4.x         | :white_check_mark: | :white_check_mark: | :question:         | :x:                | :x:                |
+| v1.5.x         | :white_check_mark: | :white_check_mark: | :white_check_mark: | :x:                | :x:                |
+| v2.0.x         | :x:                | :x:                | :x:                | :white_check_mark: | :question:         |
+| v3.0.x         | :x:                | :x:                | :x:                | :white_check_mark: | :white_check_mark: |
 
 ## Usage
 In your application's `Configuration` class, add a `WebConfiguration` object:
@@ -78,7 +79,7 @@ This minimal config results in the following:
 Support for CORS or CSP require additional configuration.
 
 ## Maven Artifacts
-This project is available on Maven Central. To add it to your project simply add the following dependencies to your 
+This project is available on Maven Central. To add it to your project simply add the following dependencies to your
 `pom.xml`:
 ```xml
 <dependency>
