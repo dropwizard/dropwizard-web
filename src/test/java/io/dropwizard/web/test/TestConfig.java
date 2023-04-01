@@ -1,7 +1,7 @@
 package io.dropwizard.web.test;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.dropwizard.Configuration;
+import io.dropwizard.core.Configuration;
 import io.dropwizard.web.conf.WebConfiguration;
 
 import javax.validation.Valid;
