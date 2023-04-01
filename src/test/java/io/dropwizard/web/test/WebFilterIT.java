@@ -1,34 +1,34 @@
 package io.dropwizard.web.test;
 
-import io.dropwizard.testing.junit.DropwizardAppRule;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Test;
+import io.dropwizard.testing.junit5.DropwizardAppExtension;
+import io.dropwizard.testing.junit5.DropwizardExtensionsSupport;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.core.Response;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-
+@ExtendWith(DropwizardExtensionsSupport.class)
 public class WebFilterIT {
     private static final String CONFIG_DIR = "src/test/resources/conf";
     private static final String CONFIG_PATH = CONFIG_DIR + "/config.yml";
 
-    @ClassRule
-    public static final DropwizardAppRule<TestConfig> APP = new DropwizardAppRule<>(TestApp.class, CONFIG_PATH);
+    public static final DropwizardAppExtension<TestConfig> EXT = new DropwizardAppExtension<>(TestApp.class, CONFIG_PATH);
 
     private Client client;
     private String hostUrl;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        client = APP.client();
-        hostUrl = "http://localhost:" + APP.getLocalPort();
+        client = EXT.client();
+        hostUrl = "http://localhost:" + EXT.getLocalPort();
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         client.close();
     }

@@ -2,7 +2,7 @@ package io.dropwizard.web.conf;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.jetty.setup.ServletEnvironment;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.setup.Environment;
 import io.dropwizard.util.Duration;
 import org.eclipse.jetty.servlets.CrossOriginFilter;
 
