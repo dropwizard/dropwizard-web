@@ -6,8 +6,8 @@ import io.dropwizard.core.setup.Environment;
 import io.dropwizard.web.WebBundle;
 import io.dropwizard.web.conf.WebConfiguration;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
 
 public class TestApp extends Application<TestConfig> {
 
