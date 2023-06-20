@@ -77,7 +77,7 @@
     <sonar.organization>dropwizard</sonar.organization>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
 
-    <dropwizard.version>2.1.6</dropwizard.version>
+    <dropwizard.version>2.1.7</dropwizard.version>
     <jetty.version>9.4.51.v20230217</jetty.version>
   </properties>
 
