@@ -1,3 +1,4 @@
+---
 web1:
   uriPath: /test/one
   hsts:
