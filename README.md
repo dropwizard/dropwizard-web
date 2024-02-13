@@ -46,10 +46,16 @@ public class ExampleConfiguration extends Configuration {
 
 Add a `WebBundle` to the `Boostrap` object in your `initialize` method:
 ```java
-bootstrap.addBundle(new WebBundle<ExampleConfiguration>() {
+bootstrap.addBundle(new WebBundle<>() {
     @Override
     public WebConfiguration getWebConfiguration(final ExampleConfiguration configuration) {
         return configuration.getWebConfiguration();
+    }
+
+    // Optional: Override Servlet environment to apply the configuration to the admin servlets
+    @Override
+    protected ServletEnvironment getServletEnvironment(Environment environment) {
+        return environment.admin();
     }
 });
 ```

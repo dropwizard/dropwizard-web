@@ -21,7 +21,11 @@ web2:
   headers:
     enabled: true
     X-Second-Custom-Header: custom value
-
+webAdmin:
+  uriPath: /
+  headers:
+    enabled: true
+    X-Admin-Custom-Header: custom value
 server:
   type: simple
   applicationContextPath: /

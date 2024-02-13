@@ -21,11 +21,13 @@ public class WebFilterIT {
 
     private Client client;
     private String hostUrl;
+    private String adminUrl;
 
     @BeforeEach
     public void setUp() throws Exception {
         client = EXT.client();
         hostUrl = "http://localhost:" + EXT.getLocalPort();
+        adminUrl = "http://localhost:" + EXT.getAdminPort() + "/admin";
     }
 
     @AfterEach
@@ -38,10 +40,12 @@ public class WebFilterIT {
         // given
         String uri1 = hostUrl + "/test/one";
         String uri2 = hostUrl + "/test/two";
+        String adminUri = adminUrl + "/ping";
 
         // when
         Response response1 = client.target(uri1).request().get();
         Response response2 = client.target(uri2).request().get();
+        Response adminResponse = client.target(adminUri).request().get();
 
         // then
         assertThat(response1.readEntity(String.class), is("test response 1"));
@@ -54,6 +58,7 @@ public class WebFilterIT {
         assertThat(response1.getHeaderString("X-Custom-Header-2"), is("custom value 2"));
         assertThat(response2.readEntity(String.class), is("test response 2"));
         assertThat(response2.getHeaderString("X-Second-Custom-Header"), is("custom value"));
+        assertThat(adminResponse.getHeaderString("X-Admin-Custom-Header"), is("custom value"));
     }
 
 }
