@@ -1,6 +1,7 @@
 package io.dropwizard.web.test;
 
 import io.dropwizard.Application;
+import io.dropwizard.jetty.setup.ServletEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.web.WebBundle;
@@ -23,6 +24,17 @@ public class TestApp extends Application<TestConfig> {
             @Override
             public WebConfiguration getWebConfiguration(TestConfig config) {
                 return config.getWeb2Configuration();
+            }
+        });
+        bootstrap.addBundle(new WebBundle<TestConfig>() {
+            @Override
+            public WebConfiguration getWebConfiguration(TestConfig config) {
+                return config.getAdminWebConfiguration();
+            }
+
+            @Override
+            protected ServletEnvironment getServletEnvironment(Environment environment) {
+                return environment.admin();
             }
         });
     }

@@ -2,6 +2,7 @@ package io.dropwizard.web;
 
 import io.dropwizard.Configuration;
 import io.dropwizard.ConfiguredBundle;
+import io.dropwizard.jetty.setup.ServletEnvironment;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.web.conf.WebConfiguration;
@@ -71,7 +72,7 @@ public abstract class WebBundle<T extends Configuration> implements ConfiguredBu
                 .map(entry -> "set " + entry.getKey() + ": " + entry.getValue())
                 .collect(Collectors.joining(","));
         final Map<String, String> filterConfig = Collections.singletonMap("headerConfig", headerConfig);
-        final FilterRegistration.Dynamic filter = environment.servlets()
+        final FilterRegistration.Dynamic filter = getServletEnvironment(environment)
                 .addFilter("header-filter-" + uriPath, HeaderFilter.class);
         filter.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, urlPattern);
         filter.setInitParameters(filterConfig);
@@ -83,6 +84,16 @@ public abstract class WebBundle<T extends Configuration> implements ConfiguredBu
         } else {
             return uri + "/" + WILDCARD;
         }
+    }
+
+    /**
+     * Define which {@link ServletEnvironment} should be configured. Default is {@link Environment#servlets()}.
+     *
+     * @param environment The environment of the Dropwizard application
+     * @return The {@link ServletEnvironment} to configure
+     */
+    protected ServletEnvironment getServletEnvironment(Environment environment) {
+        return environment.servlets();
     }
 
     public abstract WebConfiguration getWebConfiguration(T config);
