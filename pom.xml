@@ -38,7 +38,7 @@
   <properties>
     <sonar.projectKey>dropwizard_dropwizard-web</sonar.projectKey>
 
-    <jetty.version>9.4.53.v20231009</jetty.version>
+    <jetty.version>9.4.54.v20240208</jetty.version>
   </properties>
 
   <dependencies>
