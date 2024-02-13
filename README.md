@@ -49,6 +49,12 @@ bootstrap.addBundle(new WebBundle<ExampleConfiguration>() {
     public WebConfiguration getWebConfiguration(final ExampleConfiguration configuration) {
         return configuration.getWebConfiguration();
     }
+
+    // Optional: Override Servlet environment to apply the configuration to the admin servlets
+    @Override
+    protected ServletEnvironment getServletEnvironment(Environment environment) {
+        return environment.admin();
+    }
 });
 ```
 
@@ -77,7 +83,7 @@ This minimal config results in the following:
 Support for CORS or CSP require additional configuration.
 
 ## Maven Artifacts
-This project is available on Maven Central. To add it to your project simply add the following dependencies to your 
+This project is available on Maven Central. To add it to your project simply add the following dependencies to your
 `pom.xml`:
 ```xml
 <dependency>
