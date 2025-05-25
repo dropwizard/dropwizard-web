@@ -3,7 +3,7 @@ package io.dropwizard.web.conf;
 import com.google.common.collect.ImmutableList;
 import io.dropwizard.jetty.setup.ServletEnvironment;
 import io.dropwizard.core.setup.Environment;
-import org.eclipse.jetty.servlets.CrossOriginFilter;
+import org.eclipse.jetty.ee10.servlets.CrossOriginFilter;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

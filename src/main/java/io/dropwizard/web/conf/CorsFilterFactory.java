@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.jetty.setup.ServletEnvironment;
 import io.dropwizard.core.setup.Environment;
 import io.dropwizard.util.Duration;
-import org.eclipse.jetty.servlets.CrossOriginFilter;
 
 import java.util.Collections;
 import java.util.EnumSet;
@@ -14,6 +13,7 @@ import java.util.Map;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.FilterRegistration;
+import org.eclipse.jetty.ee10.servlets.CrossOriginFilter;
 
 public class CorsFilterFactory {
     @JsonProperty

@@ -6,7 +6,7 @@ import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
 import io.dropwizard.jetty.setup.ServletEnvironment;
 import io.dropwizard.web.conf.WebConfiguration;
-import org.eclipse.jetty.servlets.HeaderFilter;
+import org.eclipse.jetty.ee10.servlets.HeaderFilter;
 
 import java.util.Collections;
 import java.util.EnumSet;
