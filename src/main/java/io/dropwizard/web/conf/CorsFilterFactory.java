@@ -1,19 +1,18 @@
 package io.dropwizard.web.conf;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.dropwizard.jetty.setup.ServletEnvironment;
 import io.dropwizard.core.setup.Environment;
 import io.dropwizard.util.Duration;
 
-import java.util.Collections;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jakarta.servlet.DispatcherType;
-import jakarta.servlet.FilterRegistration;
-import org.eclipse.jetty.ee10.servlets.CrossOriginFilter;
+import java.util.Set;
+import org.eclipse.jetty.ee10.servlet.ServletContextHandler;
+import org.eclipse.jetty.http.pathmap.PathSpec;
+import org.eclipse.jetty.server.handler.CrossOriginHandler;
+import org.eclipse.jetty.server.handler.PathMappingsHandler;
 
 public class CorsFilterFactory {
     @JsonProperty
@@ -98,45 +97,46 @@ public class CorsFilterFactory {
     }
 
     public void build(Environment environment, String urlPattern) {
-        // build map of init parameters
-        final Map<String, String> builder = new HashMap<>();
+
+        final CrossOriginHandler corsHandler = new CrossOriginHandler();
 
         if (allowedOrigins != null && !allowedOrigins.isEmpty()) {
-            builder.put(CrossOriginFilter.ALLOWED_ORIGINS_PARAM, String.join(",", allowedOrigins));
+            corsHandler.setAllowedOriginPatterns(Set.copyOf(allowedOrigins));
         }
 
         if (allowedTimingOrigins != null && !allowedTimingOrigins.isEmpty()) {
-            builder.put(CrossOriginFilter.ALLOWED_TIMING_ORIGINS_PARAM, String.join(",", allowedTimingOrigins));
+            corsHandler.setAllowedTimingOriginPatterns(Set.copyOf(allowedTimingOrigins));
         }
 
         if (allowedMethods != null && !allowedMethods.isEmpty()) {
-            builder.put(CrossOriginFilter.ALLOWED_METHODS_PARAM, String.join(",", allowedMethods));
+            corsHandler.setAllowedMethods(Set.copyOf(allowedMethods));
         }
 
         if (allowedHeaders != null && !allowedHeaders.isEmpty()) {
-            builder.put(CrossOriginFilter.ALLOWED_HEADERS_PARAM, String.join(",", allowedHeaders));
+            corsHandler.setAllowedHeaders(Set.copyOf(allowedHeaders));
         }
 
         if (preflightMaxAge != null) {
-            builder.put(CrossOriginFilter.PREFLIGHT_MAX_AGE_PARAM, String.valueOf(preflightMaxAge.toSeconds()));
+            corsHandler.setPreflightMaxAge(preflightMaxAge.toJavaDuration());
         }
 
         if (allowCredentials != null) {
-            builder.put(CrossOriginFilter.ALLOW_CREDENTIALS_PARAM, String.valueOf(allowCredentials));
+            corsHandler.setAllowCredentials(allowCredentials);
         }
 
         if (exposedHeaders != null && !exposedHeaders.isEmpty()) {
-            builder.put(CrossOriginFilter.EXPOSED_HEADERS_PARAM, String.join(",", exposedHeaders));
+            setExposedHeaders(exposedHeaders);
         }
 
         if (chainPreflight != null) {
-            builder.put(CrossOriginFilter.CHAIN_PREFLIGHT_PARAM, String.valueOf(chainPreflight));
+            setChainPreflight(chainPreflight);
         }
 
-        // configure filter
-        final ServletEnvironment servlets = environment.servlets();
-        final FilterRegistration.Dynamic cors = servlets.addFilter("cross-origin-filter", CrossOriginFilter.class);
-        cors.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, urlPattern);
-        cors.setInitParameters(Collections.unmodifiableMap(builder));
+        final PathMappingsHandler pathHandler = new PathMappingsHandler();
+        pathHandler.addMapping(PathSpec.from(urlPattern), corsHandler);
+
+        final ServletContextHandler contextHandler = environment.getApplicationContext();
+        contextHandler.insertHandler(corsHandler);
+
     }
 }
