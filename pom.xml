@@ -9,7 +9,7 @@
   </parent>
   <groupId>io.dropwizard.modules</groupId>
   <artifactId>dropwizard-web</artifactId>
-  <version>5.0.0-SNAPSHOT</version>
+  <version>5.0.0</version>
   <packaging>jar</packaging>
 
   <name>dropwizard-web</name>
@@ -132,4 +132,8 @@
       </plugin>
     </plugins>
   </build>
+
+  <scm>
+    <tag>v5.0.0</tag>
+  </scm>
 </project>
